@@ -1,0 +1,57 @@
+model 1
+nncACCsystem_4_30 nnconfig_4_30.mat
+addpath 2
+/home/zhenya/breach/
+/home/zhenya/FalsifAI/
+input_name 1
+in_lead
+input_range 1
+-1 1
+optimization 1
+cmaes
+phi 1
+ACC1 alw_[0,50](d_rel[t] - 1.4 * v_ego[t] >= 4)
+controlpoints 1
+10
+parameters 14 
+T=50;
+Ts=0.1;
+G_ego=tf(1,[0.5,1,0]);
+t_gap=1.4;
+v_set=30;
+D_default=10;
+x0_lead=70;
+v0_lead=40;
+x0_ego=10;
+v0_ego=30;
+amin_ego=-3;
+amax_ego=2;
+amin_lead=-1;
+amax_lead=1;
+timespan 1
+0:.1:50
+nn_in 5
+v_set
+t_gap
+v_ego
+d_rel
+v_rel
+guidance 1
+cov
+qs_size 1
+2
+cov_metric 8
+nc 10
+tkc 3
+tnc 50 10
+ttk 50 3
+pd 50 10
+nd 50 10
+mi 100
+md 100
+timeout 1
+150
+budget_local 1
+2
+trials 1
+30

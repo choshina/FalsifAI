@@ -1,0 +1,74 @@
+model 1
+my_buck_nn_8_7 buck_nnconfig_8_7.mat
+addpath 2
+/home/zhenya/breach/
+/home/zhenya/FalsifAI/
+input_name 1
+in_Vref
+input_range 1
+10 15
+optimization 1
+cmaes
+phi 1
+BUCK1  alw_[1,6](error[t] < 0.925 and error[t] > -0.925)
+controlpoints 1
+10
+parameters 32
+i0=0;
+v0=0;
+T=6;
+Ts=0.001;
+T_br=0.01;
+T_sw=1/10000;
+Vs=30;
+C=2.2e-3;
+L=2.65e-3;
+R=8;
+rs=100e-3;
+rL=520e-3;
+A=[-1*(rs+rL)/L,-1/L;1/C,-1/(R*C)];
+u1=[Vs/L;0];
+u2=[0;0];
+sys(1).Ac=A;
+sys(1).Bc=u1;
+sys(1).Bo=u2;
+a00c=sys(1).Ac(1,1);
+a01c=sys(1).Ac(1,2);
+a10c=sys(1).Ac(2,1);
+a11c=sys(1).Ac(2,2);
+b0c=sys(1).Bc(1);
+b1c=sys(1).Bc(2);
+a00o=-rL/L;
+a01o=sys(1).Ac(1,2);
+a10o=sys(1).Ac(2,1);
+a11o=sys(1).Ac(2,2);
+b0o=sys(1).Bo(1);
+b1o=sys(1).Bo(2);
+min_Vref=10;
+max_Vref=15;
+timespan 1
+0:.01:6
+nn_in 4
+error
+in_Vref_True
+Vc
+iL
+guidance 1
+cov
+qs_size 1
+2
+cov_metric 8
+nc 5
+tkc 3
+tnc 100 5
+ttk 50 3
+pd 100 10
+nd 100 10
+mi 10
+md 10
+timeout 1
+150
+budget_local 1
+2
+trials 1
+30

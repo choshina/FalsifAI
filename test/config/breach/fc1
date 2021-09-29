@@ -1,0 +1,33 @@
+model 1
+nn_fuel_control_3_15_1
+addpath 2
+/home/zhenya/breach/
+/home/zhenya/FalsifAI/
+input_name 2
+Engine_Speed
+Pedal_Angle
+input_range 2
+900 1100
+8.8 61.1
+optimization 1
+cmaes
+phi 1
+AFC1 alw_[0,30](AF[t] < 1.2*14.7 and AF[t] > 0.8*14.7)
+controlpoints 1
+5
+parameters 9
+fuel_inj_tol=1.0;
+MAF_sensor_tol=1.0;
+AF_sensor_tol=1.0;
+pump_tol=1;
+kappa_tol=1;
+tau_ww_tol=1;
+fault_time=50;
+kp=0.04;
+ki=0.14;
+timespan 1
+0:.1:30
+max_sim 1
+300
+trials 1
+30
