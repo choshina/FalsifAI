@@ -35,7 +35,7 @@ end
 % input squence
 for i = 2:r_size
     for j = 1:c_size
-        good_position = (hiddenOut{i,j} <= hiddenOut{i-1,j});
+        good_position = (hiddenOut{i,j} < hiddenOut{i-1,j});
         MD_tempHiddenOut{1,j}(good_position) = MD_tempHiddenOut{1,j}(good_position) + 1;
         
         if i == r_size &  MD_tempHiddenOut{1,j}(good_position) > t_interval
@@ -47,7 +47,7 @@ for i = 2:r_size
 %            MDNC_activated_neurons{1,j}(bad_postion) = MDNC_activated_neurons{1,j}(bad_postion) + 1;
 %        end
 
-		bad_position = (hiddenOut{i,j} > hiddenOut{i-1,j});
+		bad_position = (hiddenOut{i,j} >= hiddenOut{i-1,j});
 		for index = 1: numel(bad_position)
 			if bad_position(index, 1) == 1 & MD_tempHiddenOut{1,j}(index) > t_interval
 				MDNC_activated_neurons{1,j}(index, 1) = MDNC_activated_neurons{1,j}(index, 1) + 1;
