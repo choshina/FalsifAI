@@ -102,13 +102,20 @@ This repository is for the artifact evaluation of the paper "FalsifAI: Falsifica
 
 ## Installation
 
-- Clone the repository
+- Clone the repository `git clone https://github.com/lyudeyun/FalsifAI.git`
 
 - Install [Breach](https://github.com/decyphir/breach)
   1. start matlab, set up a C/C++ compiler using the command `mex -setup`. (Refer to [here](https://www.mathworks.com/help/matlab/matlabexternal/changing-default-compiler.html) for more details.)
   2. navigate to `breach/` in Matlab commandline, and run `InstallBreach`
 
+ ## Usage
 
+ To reproduce the experimental results, users should follow the steps below:
 
+ - The user-specified configuration files are stored in the directory `test/config/`. Replace the paths of `FalsifAI` and `breach` in user-specified file under the line `addpath 2` with their own paths. Users can also specify other configurations, such as model, input ranges, optimization methods, and etc. 
+ - Navigate to the directory `test/`. Run the command `python [type]_test.py config/[user-specified configuration file]`. Users can generate the testing scripts by `ai_test.py` or `breach_test.py`.
+ - Now the executable scripts have been generated under the directory `test/benchmarks/`. Users need to edit the executable scripts permission using the command `chmod -R 777 *`.
+ - Navigate to the root directory `falsifAI/` and run the command `make`. The automatically generated .csv experimental results will be stored in directory `results/`.
+ - The corresponding log will be stored under directory `output/`.
 
 
